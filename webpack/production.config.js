@@ -13,7 +13,7 @@ configuration.entry = {
   PIG: './parse-interface-guide/index.js',
   quickstart: './quickstart/index.js',
 };
-configuration.output.path = './production/bundles';
+configuration.output.path = './Parse-Dashboard/public/bundles';
 
 var webpack = require('webpack');
 

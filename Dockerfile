@@ -1,6 +1,8 @@
 FROM node:6
-WORKDIR /home/app/projects/parse-console
-ADD . .
+
+ENV APP_HOME=/home/app/projects/parse-console
+WORKDIR $APP_HOME
+ADD . $APP_HOME
 RUN npm install \
  && npm run build \
  && npm cache clear \
