@@ -1,11 +1,9 @@
-FROM node:4.4.2
-WORKDIR /src
-ADD . /src
-RUN cd /src \
- && npm install \
+FROM node:6
+WORKDIR /home/app/projects/parse-console
+ADD . .
+RUN npm install \
  && npm run build \
  && npm cache clear \
  && rm -rf ~/.npm \
  && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["npm", "run", "dashboard"]
-EXPOSE 8000 443 80
