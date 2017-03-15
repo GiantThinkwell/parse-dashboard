@@ -8,3 +8,4 @@ RUN cd /src \
  && rm -rf ~/.npm \
  && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["npm", "run", "dashboard"]
+EXPOSE 8000 443 80
