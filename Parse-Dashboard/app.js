@@ -179,7 +179,39 @@ module.exports = function(config, allowInsecureHTTP) {
         </html>
       `);
     });
-
+    
+    app.get('/', function(req, res) {
+      if (users && (req.user && req.user.isAuthenticated)) {
+        res.send(`<!DOCTYPE html>
+          <head>
+            <link rel="shortcut icon" type="image/x-icon" href="${mountPath}favicon.ico" />
+            <base href="${mountPath}"/>
+            <script>
+              PARSE_DASHBOARD_PATH = "${mountPath}";
+            </script>
+          </head>
+          <html>
+            <title>Parse Dashboard</title>
+            <body>
+              <div id="browser_mount"></div>
+              <script src="${mountPath}bundles/dashboard.bundle.js"></script>
+            </body>
+          </html>
+        `);
+      }
+      res.send(`<!DOCTYPE html>
+        <head>
+          <link rel="shortcut icon" type="image/x-icon" href="${mountPath}favicon.ico" />
+          <base href="${mountPath}"/>
+        </head>
+        <html>
+          <title>Parse Dashboard</title>
+          <body>
+            Go here to login: <a href="${mountPath}login">${mountPath}login</a>
+          </body>
+        </html>
+      `);
+    });
     // For every other request, go to index.html. Let client-side handle the rest.
     app.get('/*', function(req, res) {
       if (users && (!req.user || !req.user.isAuthenticated)) {
